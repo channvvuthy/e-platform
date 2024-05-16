@@ -1,0 +1,2 @@
+export const boxStoryClass = "overflow-hidden w-140 h-176 rounded-2xl bg-cover bg-center shadow bg-white flex items-end justify-center relative cursor-pointer";
+export const userProfileClass = "bg-accent z-50 border-4 border-primary w-12 h-12 rounded-full absolute left-2 top-2 bg-cover bg-center";
