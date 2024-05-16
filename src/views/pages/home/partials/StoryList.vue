@@ -1,5 +1,5 @@
 <template>
-    <div :style="{ width: `${(windowWidth - 600)}px` }" class="px-10 pt-5">
+    <div :style="{ width: `${(windowWidth - 640)}px` }" class="px-5 pt-5">
         <div v-if="isLoading">Loading...</div>
         <div v-else class="relative">
             <div class="absolute z-50 -right-4 top-0 h-full flex items-center cursor-pointer">

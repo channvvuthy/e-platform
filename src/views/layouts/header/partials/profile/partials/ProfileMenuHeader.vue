@@ -1,14 +1,20 @@
 <template>
   <div class="flex items-center py-3 cursor-pointer">
-    <Avatar
-      :size="43"
-      imgUrl="https://images.pexels.com/photos/21365393/pexels-photo-21365393/free-photo-of-a-woman-sitting-on-a-couch-with-a-cat.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    />
+    <div class="flex-1">
+      <Avatar :size="43" :imgUrl="authInfo.photo" />
+    </div>
     <SpaceWidth />
-    <p>John N. Hentz</p>
+    <p>{{ authInfo.first_name }}&nbsp;{{ authInfo.last_name }}</p>
   </div>
 </template>
+
 <script setup>
 import Avatar from "@components/ui/Avatar.vue";
 import SpaceWidth from "@components/ui/SpaceWidth.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+const store = useStore();
+
+const authInfo = computed(() => store.state.auth.info);
+
 </script>

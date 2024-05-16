@@ -1,21 +1,19 @@
 <template>
   <div class="rounded rounded-full flex items-center justify-center">
-    <button
-      :data-tooltip-target="id"
-      data-tooltip-placement="bottom"
-      data-tooltip-trigger="click"
-      type="button"
-      :class="btnClass"
-    >
+
+    <!-- Button of tooltip -->
+    <button :id="`${id}dropdown`" :data-dropdown-toggle="id" :class="btnClass" data-dropdown-trigger="click"
+      type="button">
       <slot name="buttonContent"></slot>
     </button>
 
-    <div :id="id" role="tooltip" :class="contentClass">
-      <slot name="tooltipContent">tooltipContent</slot>
-      <slot name="tooltipArrow">
-        <div class="tooltip-arrow box-shadow" data-popper-arrow></div>
-      </slot>
+    <!-- Content of tooltip -->
+    <div :id="id" class="z-10 hidden">
+      <ul :aria-labelledby="`${id}dropdown`">
+        <slot name="tooltipContent"></slot>
+      </ul>
     </div>
+
   </div>
 </template>
 
@@ -34,7 +32,7 @@ defineProps({
   },
   contentClass: {
     type: String,
-    default: function() {
+    default: function () {
       return "opacity-0 tooltip";
     }
   },

@@ -9,12 +9,12 @@
 </template>
 <script>
 import MenuItem from "./partials/MenuItem.vue";
-import RightMenu from "./RightMenu.vue";
+import RightMenu from "./RightMenu.vue"; 
 import LeftMenu from "./LeftMenu.vue";
 export default {
   components: {
     MenuItem,
-    RightMenu,
+    RightMenu, 
     LeftMenu
   }
 };
