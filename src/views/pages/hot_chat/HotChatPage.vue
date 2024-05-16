@@ -44,10 +44,16 @@ import HotChatHead from './partials/HotChatHead.vue';
 import VoiceRecord from './partials/VoiceRecord.vue';
 import AttachmentIcon from '@components/icons/commons/AttachmentIcon.vue';
 import EmojiIcon from '@components/icons/commons/EmojiIcon.vue';
+import { deviceInfo } from '../../../utils/common.js';
 // import AudioPlayer from "@components/ui/AudioPlayer.vue";
 
-const onResult = event => {
-    console.log({ event })
+const onResult = async event => {
+    const response = await fetch(event);
+    const blob = await response.blob();
+    console.log({ deviceInfo})
+    console.log({ blob})
+
+
 }
 
 
