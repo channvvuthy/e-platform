@@ -74,3 +74,17 @@ export const queryString = props => {
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(props[key])}`)
         .join('&');
 }
+
+/**
+ * A function that truncates a string if it exceeds the specified maximum length.
+ *
+ * @param {string} str - The input string to be truncated.
+ * @param {number} maxLength - The maximum length allowed for the string. Default is 50.
+ * @return {string} The truncated string with '...' appended if it exceeds maxLength.
+ */
+export const truncateString = (str, maxLength = 50) => {
+    if (str.length < maxLength) {
+        return str;
+    }
+    return str.substring(0, maxLength) + '...';
+}

@@ -1,8 +1,8 @@
 <template>
     <div :style="{ width: `${(windowWidth - 640)}px` }" class="px-5 pt-5">
         <div v-if="isLoading">Loading...</div>
-        <div v-else class="relative">
-            <div class="absolute z-50 -right-4 top-0 h-full flex items-center cursor-pointer">
+        <div v-else class="relative z-10">
+            <div class="absolute z-10 -right-4 top-0 h-full flex items-center cursor-pointer">
                 <div class="rounded-full h-11 w-11 bg-secondary flex items-center justify-center box-shadow">
                     <NextIcon />
                 </div>

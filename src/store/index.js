@@ -5,6 +5,7 @@ import auth from './auth';
 import story from './story';
 import etalk from './etalk';
 import user from './user';
+import notification from './notification';
 
 export default createStore({
   modules: {
@@ -13,6 +14,7 @@ export default createStore({
     auth,
     story,
     etalk,
-    user
+    user,
+    notification
   }
 })
