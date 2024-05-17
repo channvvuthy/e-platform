@@ -34,11 +34,13 @@ import PreviewImage from './partials/PreviewImage.vue';
 import PreviewPDF from './partials/PreviewPDF.vue';
 import VoiceRecord from './partials/VoiceRecord.vue';
 import { getBlobDuration, blobToFile } from '../../../utils/common';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
+import { useStore } from 'vuex';
 
 const isImagePreview = ref(false);
 const isPdfPreview = ref(false);
 
+const store = useStore();
 const deviceInfo = ref({
     id: '',
     name: '',
@@ -47,7 +49,7 @@ const deviceInfo = ref({
     osRelease: ''
 });
 
-// import AudioPlayer from "@components/ui/AudioPlayer.vue";
+const authInfo = computed(() => store.state.auth.info)
 
 const onResult = async event => {
     const response = await fetch(event);
@@ -63,6 +65,9 @@ const closePdfPreview = () => isPdfPreview.value = false;
 
 onMounted(async () => {
     deviceInfo.value = await window.electron.getDeviceInfo();
+    store.dispatch('etalk/getMessages', { id: authInfo.value._id, type: 12 }).then((res) => {
+        console.log({ res })
+    })
 });
 
 </script>

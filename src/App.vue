@@ -15,7 +15,7 @@ const route = useRoute();
 const store = useStore();
 
 const isNoMasterLayout = computed(() => {
-  const noMasterLayoutRoutes = ["login", "signup", "forgot-password"];
+  const noMasterLayoutRoutes = ["login", "signup", "forget-password", "change-password"];
   return noMasterLayoutRoutes.includes(route.name);
 });
 

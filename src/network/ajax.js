@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import { apiBaseUrl, basicAuth } from '../constant';
+import { queryString } from '../utils/common';
 const $toast = useToast();
 
 const api = axios.create({
@@ -66,8 +67,8 @@ const handleError = (error) => {
 
 
 const apiMethods = {
-    get(url, config = {}) {
-        return api.get(url, config).then((res) => {
+    get(url, props = {}) {
+        return api.get(`${url}?${queryString(props)}`).then((res) => {
             return handleResponse(res);
         }).catch((error) => {
             return handleError(error);

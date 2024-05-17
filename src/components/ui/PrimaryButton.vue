@@ -26,7 +26,7 @@ defineProps({
     },
     height: {
         type: Number,
-        default: () => 60
+        default: () => 55
     },
     isLoading: {
         type: Boolean,

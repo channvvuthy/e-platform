@@ -7,10 +7,10 @@
             </div>
             <p class="text-gray-helper pl-3">Keep me logged in </p>
         </div>
-        <div class="cursor-ponter text-primary cursor-pointer">
+        <div class="cursor-ponter text-primary cursor-pointer" @click="toPage('forget-password')">
             <p>Forget password?</p>
         </div>
-        <input type="hidden" name="remember_me" v-model="isRememberMe"/>
+        <input type="hidden" name="remember_me" v-model="isRememberMe" />
     </div>
 </template>
 <script>
@@ -27,6 +27,10 @@ export default {
     methods: {
         setRememberMe() {
             this.isRememberMe = !this.isRememberMe;
+        },
+
+        toPage(pageName) {
+            this.$router.push(pageName);
         }
     }
 

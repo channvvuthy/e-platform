@@ -67,3 +67,10 @@ export const getDeviceInfo = async () => {
 export const blobToFile = (theBlob, fileName) => {
     return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: "audio/mpeg" })
 }
+
+
+export const queryString = props => {
+    return Object.keys(props)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(props[key])}`)
+        .join('&');
+}

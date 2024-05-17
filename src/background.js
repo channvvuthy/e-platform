@@ -49,16 +49,16 @@ app.on('activate', () => {
 })
 
 ipcMain.handle('get-device-info', async () => {
-  const id = await machineId();
-  const name = os.hostname();
-  const osType = os.type();
+  const device_id = await machineId();
+  const device_name = os.hostname();
+  const device_os = os.type();
   const osPlatform = os.platform();
   const osRelease = os.release();
 
   return {
-    id,
-    name,
-    osType,
+    device_id,
+    device_name,
+    device_os,
     osPlatform,
     osRelease,
   };

@@ -4,6 +4,8 @@ import RegisterPage from "../views/pages/user/register/RegisterPage";
 import HomePage from "../views/pages/home/HomePage";
 import HotChatPage from "../views/pages/hot_chat/HotChatPage";
 import LogoutPage from "../views/pages/user/logout/LogoutPage";
+import ForgetPasswordPage from "../views/pages/user/forget_password/ForgetPasswordPage";
+import ChangePasswordPage from "../views/pages/user/change_password/ChangePasswordPage";
 
 const routes = [
   {
@@ -37,6 +39,16 @@ const routes = [
     path: '/friend',
     name: 'friend',
     component: HotChatPage
+  },
+  {
+    path: '/forget-password',
+    name: 'forget-password',
+    component: ForgetPasswordPage
+  },
+  {
+    path: '/change-password',
+    name: 'change-password',
+    component: ChangePasswordPage
   },
 ];
 

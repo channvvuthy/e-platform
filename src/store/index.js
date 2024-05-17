@@ -4,6 +4,7 @@ import register from './register';
 import auth from './auth';
 import story from './story';
 import etalk from './etalk';
+import user from './user';
 
 export default createStore({
   modules: {
@@ -11,6 +12,7 @@ export default createStore({
     register,
     auth,
     story,
-    etalk
+    etalk,
+    user
   }
 })
