@@ -1,42 +1,3 @@
-import { machineIdSync } from "node-machine-id";
-const os = require('os');
-
-export const getDeviceId = () => machineIdSync();
-
-/**
- * Returns the operating system based on the process platform.
- *
- * @return {string} The operating system ('macos', 'windows', or 'linux').
- */
-
-export const deviceOs = () => {
-    switch (process.platform) {
-        case 'darwin':
-            return 'macos';
-        case 'win32':
-            return 'windows';
-        default:
-            return 'linux';
-    }
-};
-
-export const deviceName = () => os.hostname();
-export const osVersion = () => os.release();
-
-/**
- * A function that returns device information including device ID, device OS, device name, and OS version.
- *
- * @return {Object} Object containing device information
- */
-export const deviceInfor = () => {
-    return {
-        device_id: getDeviceId(),
-        device_os: deviceOs(),
-        device_name: deviceName(),
-        os_version: osVersion(),
-    }
-}
-
 /**
  * Generates a random string of specified length using alphanumeric characters.
  *
@@ -52,4 +13,57 @@ export const randomString = (length = 10) => {
         result += characters.charAt(randomIndex);
     }
     return result;
+}
+
+/**
+ * Retrieves the duration of an audio blob.
+ *
+ * @param {Blob} blob - The audio blob for which to determine the duration.
+ * @return {Promise<number>} A promise that resolves with the duration of the audio in seconds.
+ */
+export const getBlobDuration = async (blob) => {
+    return new Promise((resolve, reject) => {
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio();
+        audio.preload = 'metadata';
+
+        audio.addEventListener('loadedmetadata', () => {
+            if (audio.duration === Infinity) {
+                audio.currentTime = Number.MAX_SAFE_INTEGER;
+                audio.addEventListener('timeupdate', () => {
+                    resolve(audio.duration);
+                    audio.currentTime = 0;
+                }, { once: true });
+            } else {
+                resolve(audio.duration);
+            }
+            URL.revokeObjectURL(url);
+        });
+
+        audio.addEventListener('error', () => {
+            reject(new Error(`Failed to load media metadata: ${audio.error?.message || 'unknown error'}`));
+        });
+
+        audio.src = url;
+    });
+}
+
+/**
+ * A description of the entire function.
+ *
+ * @return {Promise} A promise with the device information.
+ */
+export const getDeviceInfo = async () => {
+    return await await window.electron.getDeviceInfo();
+}
+
+/**
+ * A description of the entire function.
+ *
+ * @param {type} theBlob - description of parameter
+ * @param {type} fileName - description of parameter
+ * @return {type} description of return value
+ */
+export const blobToFile = (theBlob, fileName) => {
+    return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: "audio/mpeg" })
 }

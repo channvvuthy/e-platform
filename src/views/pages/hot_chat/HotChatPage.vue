@@ -6,29 +6,17 @@
             <!-- Header -->
             <HotChatHead />
             <div class="flex flex-col h-full">
-                <div class="p-10 h-4/5">
+                <PreviewImage v-if="isImagePreview" @close="closeImagePreview" />
+                <PreviewPDF v-if="isPdfPreview" @close="closePdfPreview" />
 
-
-                    <!-- <AudioPlayer audioId="audio"
-                        :audioUrl="'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3'"
-                        time="10:00 AM" />
-
-                    <AudioPlayer audioId="audio1"
-                        :audioUrl="'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3'"
-                        time="10:00 AM" /> -->
-                </div>
-                <div class="px-10 bg-white py-5">
+                <div class="p-10 h-4/5"></div>
+                <div class="px-10 bg-white py-5 relative">
                     <div class="border rounded-full h-12 flex items-center px-2">
-                        <div class="w-9 h-9 mr-4">
-                            <div class="w-9 h-9 rounded-full bg-border flex items-center justify-center clear">
-                                <AttachmentIcon :size="18" />
-                            </div>
-                        </div>
+                        <Attachment />
+
+                        <!-- Typing message -->
                         <input type="text" placeholder="Ask question"
                             class="focus:outline-none bg-transparent focus:ring-0 focus:ring-transparent ring-transparent border-none w-full text-sm" />
-                        <div class="mr-4">
-                            <EmojiIcon :size="35" fill="#818181" />
-                        </div>
 
                         <VoiceRecord @onResult="onResult($event)" />
                     </div>
@@ -41,20 +29,40 @@
 <script setup>
 import bgHotChat from '../../../assets/images/bg_hot_chat.jpg';
 import HotChatHead from './partials/HotChatHead.vue';
+import Attachment from './partials/Attachment.vue';
+import PreviewImage from './partials/PreviewImage.vue';
+import PreviewPDF from './partials/PreviewPDF.vue';
 import VoiceRecord from './partials/VoiceRecord.vue';
-import AttachmentIcon from '@components/icons/commons/AttachmentIcon.vue';
-import EmojiIcon from '@components/icons/commons/EmojiIcon.vue';
-import { deviceInfo } from '../../../utils/common.js';
+import { getBlobDuration, blobToFile } from '../../../utils/common';
+import { onMounted, ref } from 'vue';
+
+const isImagePreview = ref(false);
+const isPdfPreview = ref(false);
+
+const deviceInfo = ref({
+    id: '',
+    name: '',
+    osType: '',
+    osPlatform: '',
+    osRelease: ''
+});
+
 // import AudioPlayer from "@components/ui/AudioPlayer.vue";
 
 const onResult = async event => {
     const response = await fetch(event);
     const blob = await response.blob();
-    console.log({ deviceInfo})
-    console.log({ blob})
-
-
+    const duration = await getBlobDuration(blob);
+    const newBlob = blobToFile(blob, 'test')
+    // console.log({ deviceInfo})
+    console.log({ blob, duration, newBlob })
 }
 
+const closeImagePreview = () => isImagePreview.value = false;
+const closePdfPreview = () => isPdfPreview.value = false;
+
+onMounted(async () => {
+    deviceInfo.value = await window.electron.getDeviceInfo();
+});
 
 </script>

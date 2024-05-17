@@ -29,7 +29,7 @@ export default {
                 });
         },
 
-        postMessage({ commit }, data) {
+        postHotMessage({ commit }, data) {
             commit('setMessing', true);
             return ajax.post(postHotChatPath, data)
                 .then((response) => {
