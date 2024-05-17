@@ -88,3 +88,10 @@ export const truncateString = (str, maxLength = 50) => {
     }
     return str.substring(0, maxLength) + '...';
 }
+
+export const linkifiedText = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => {
+        return `<a href="${url}" target="_blank" class="text-primary">${url}</a>`;
+    });
+}

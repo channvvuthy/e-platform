@@ -72,7 +72,9 @@ const handleScroll = async (event) => {
       });
   }
 }
-
-
-
 </script>
+<style>
+.block {
+  z-index: 50 !important;
+}
+</style>

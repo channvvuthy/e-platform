@@ -1,4 +1,4 @@
-import { getNotificationPath } from '../utils/path';
+import { getNotificationPath, readNotificationPath } from '../utils/path';
 import ajax from '../network/ajax';
 
 export default {
@@ -6,11 +6,17 @@ export default {
     state: {
         loading: false,
         notifications: [],
+        notification: null,
     },
     mutations: {
         setLoading(state, value) {
             state.loading = value;
         },
+
+        setNotification(state, value) {
+            state.notification = value;
+        },
+
         /**
          * Set the notifications in the state to the provided value.
          *
@@ -29,6 +35,10 @@ export default {
         addNotifications(state, values) {
             state.notifications.push(...values);
         },
+
+        readNotification() {
+
+        }
     },
     actions: {
         /**
@@ -48,10 +58,19 @@ export default {
                 } else {
                     commit('setNotifications', data);
                 }
-                
+
                 return data;
             } finally {
                 commit('setLoading', false);
+            }
+        },
+
+        async readNotification({ commit }, props) {
+            try {
+                const { data } = await ajax.get(readNotificationPath, props);
+                return data;
+            } finally {
+                commit('readNotification', true);
             }
         },
     },
