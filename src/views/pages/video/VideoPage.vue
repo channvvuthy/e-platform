@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5 w-full overflow-y-scroll" :style="{height: `${windowHeight - 63}px`}">
+    <div class="p-5 w-full overflow-y-scroll" :style="{ height: `${windowHeight - 63}px` }">
         <Search />
         <div v-if="loading">
             <div>
@@ -9,7 +9,8 @@
             </div>
         </div>
         <div v-else class="mt-5">
-            <VideoCollection/>
+            <VideoCollection />
+            <VideoCouse/>
         </div>
     </div>
 </template>
@@ -19,12 +20,13 @@ import { useStore } from 'vuex';
 import { computed, onMounted, ref, onUnmounted } from 'vue';
 import PackageLoading from './partials/loading/PackageLoading.vue'
 import VideoCollection from './partials/packages/VideoCollection.vue'
+import VideoCouse from "./course/VideoCourse.vue"
 
 const store = useStore();
 const loading = computed(() => store.state.video.loading);
 
-onMounted(() => {
-    store.dispatch('video/fetchVideos');
+onMounted(async () => {
+   await store.dispatch('video/fetchVideos');
 });
 
 const windowHeight = ref(window.innerHeight);
