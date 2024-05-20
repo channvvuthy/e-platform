@@ -95,3 +95,17 @@ export const linkifiedText = (text) => {
         return `<a href="${url}" target="_blank" class="text-primary">${url}</a>`;
     });
 }
+
+/**
+ * Dispatches a click event on the document body.
+ *
+ * @return {void} This function does not return anything.
+ */
+export const dispatchEventClick = () => {
+    const event = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+    document.body.dispatchEvent(event);
+}

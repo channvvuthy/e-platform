@@ -8,3 +8,4 @@ export const verifyOwnerPath = 'user/forget-password';
 export const changePasswordPath = 'user/forget-password';
 export const getNotificationPath = 'notification';
 export const readNotificationPath = 'notification/read';
+export const videoPath = 'video';

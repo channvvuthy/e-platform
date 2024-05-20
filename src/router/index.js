@@ -6,52 +6,19 @@ import HotChatPage from "../views/pages/hot_chat/HotChatPage";
 import LogoutPage from "../views/pages/user/logout/LogoutPage";
 import ForgetPasswordPage from "../views/pages/user/forget_password/ForgetPasswordPage";
 import ChangePasswordPage from "../views/pages/user/change_password/ChangePasswordPage";
+import VideoPage from "../views/pages/video/VideoPage";
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomePage,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginPage
-  },
-  {
-    path: '/signup',
-    name: 'signup',
-    component: RegisterPage
-  },
-  {
-    path: '/logout',
-    name: 'logout',
-    component: LogoutPage,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/hot-chat',
-    name: 'hot-chat',
-    component: HotChatPage
-  },
-  {
-    path: '/friend',
-    name: 'friend',
-    component: HotChatPage
-  },
-  {
-    path: '/forget-password',
-    name: 'forget-password',
-    component: ForgetPasswordPage
-  },
-  {
-    path: '/change-password',
-    name: 'change-password',
-    component: ChangePasswordPage
-  },
+  { path: '/', name: 'home', component: HomePage, meta: { requiresAuth: true } },
+  { path: '/login', name: 'login', component: LoginPage },
+  { path: '/signup', name: 'signup', component: RegisterPage },
+  { path: '/logout', name: 'logout', component: LogoutPage, meta: { requiresAuth: true } },
+  { path: '/hot-chat', name: 'hot-chat', component: HotChatPage },
+  { path: '/friend', name: 'friend', component: HotChatPage },
+  { path: '/video', name: 'video', component: VideoPage },
+  { path: '/forget-password', name: 'forget-password', component: ForgetPasswordPage },
+  { path: '/change-password', name: 'change-password', component: ChangePasswordPage },
 ];
-
 
 
 const router = createRouter({

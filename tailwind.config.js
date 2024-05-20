@@ -22,6 +22,7 @@ module.exports = {
         success: '#BBE4FB',
         chat: '#f3f3f3',
         'gray-helper': '#818181',
+        loading: '#eaebec',
       },
       height: {
         '43': '43px',

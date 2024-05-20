@@ -6,6 +6,7 @@ import story from './story';
 import etalk from './etalk';
 import user from './user';
 import notification from './notification';
+import video from './video';
 
 export default createStore({
   modules: {
@@ -15,6 +16,7 @@ export default createStore({
     story,
     etalk,
     user,
-    notification
+    notification,
+    video
   }
 })
