@@ -20,6 +20,16 @@
                     <!-- title -->
                     <div class="mt-10 ml-5 text-sm">{{ truncateString(video.title, 40) }}</div>
                     <VideoFeature :features="video" />
+                    <div class="px-5 mt-5">
+                        <div class="bg-secondary rounded-full h-10 flex items-center px-5 text-sm justify-between">
+                            <div class="flex items-center">
+                                <del>${{ video.price.highlight }}</del>
+                                <p class="text-red-500 ml-3">${{ video.price.year }}</p>
+                            </div>
+                            <div class="bg-primary text-sm text-white rounded-full py-1 px-3 cursor-pointer">Add to Cart
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

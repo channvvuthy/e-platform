@@ -67,3 +67,6 @@ div#profile {
 .w-140 {
     width: 140px !important;
 }
+.block{
+    z-index: 100 !important;
+}
