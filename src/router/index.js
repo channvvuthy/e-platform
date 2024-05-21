@@ -7,6 +7,8 @@ import LogoutPage from "../views/pages/user/logout/LogoutPage";
 import ForgetPasswordPage from "../views/pages/user/forget_password/ForgetPasswordPage";
 import ChangePasswordPage from "../views/pages/user/change_password/ChangePasswordPage";
 import VideoPage from "../views/pages/video/VideoPage";
+import LibraryPage from '../views/pages/library/LibraryPage.vue';
+import VideoPackagePage from '../views/pages/video_package/VideoPackagePage.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomePage, meta: { requiresAuth: true } },
@@ -16,6 +18,8 @@ const routes = [
   { path: '/hot-chat', name: 'hot-chat', component: HotChatPage },
   { path: '/friend', name: 'friend', component: HotChatPage },
   { path: '/video', name: 'video', component: VideoPage },
+  { path: '/video/package/:id', name: 'video-package', component: VideoPackagePage },
+  { path: '/library', name: 'library', component: LibraryPage },
   { path: '/forget-password', name: 'forget-password', component: ForgetPasswordPage },
   { path: '/change-password', name: 'change-password', component: ChangePasswordPage },
 ];

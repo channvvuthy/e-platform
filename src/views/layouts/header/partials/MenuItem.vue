@@ -8,7 +8,7 @@
     >
       <component
         :is="menuItem.icon"
-        :fill="isRouteActive(menuItem.pageName) ? '#BBE4FB' : '#FFFFFF'"
+        :fill="isRouteActive(menuItem.pageName) ? '#48cae4' : '#FFFFFF'"
       />
     </div>
   </div>

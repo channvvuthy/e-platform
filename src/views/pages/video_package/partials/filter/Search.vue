@@ -4,7 +4,7 @@
             <SearchIcon />
             <input type="text" placeholder="Search..."
                 class="ml-3 w-full bg-transparent focus:ring-0 focus:ring-transparent ring-transparent border-none"
-                v-model="s" @keyup.enter="filterVideos(filter_id)" />
+                v-model="s" @keyup.enter="fetchCollections(filter_id)" />
 
             <div class="flex items-center bg-secondary p-1.5 rounded-full px-5 cursor-pointer" v-if="filter_id != ''"
                 @click="clearFilter">
@@ -25,10 +25,10 @@
                         <div class="grid grid-cols-3 bg-white gap-5 px-5 pt-5 rounded-2xl overflow-y-scroll shadow border"
                             style="max-height: 600px;">
                             <!-- loop of filter -->
-                            <div v-for="(filter, index) in videos.filter" :key="index">
+                            <div v-for="(filter, index) in collections.filter" :key="index">
                                 <div class="flex items-center border-border pb-3 cursor-pointer"
-                                    :class="(index < videos.filter.length - 1) ? 'border-b' : ''"
-                                    @click="filterVideos(filter._id)">
+                                    :class="(index < collections.filter.length - 1) ? 'border-b' : ''"
+                                    @click="fetchCollections(filter._id)">
                                     <div class="w-43 h-43 rounded-full bg-cover bg-center mr-4"
                                         :style="{ backgroundImage: `url(${filter.icon})` }">
                                     </div>
@@ -56,31 +56,33 @@ import FilterIcon from '@components/icons/commons/FilterIcon.vue';
 import { useStore } from 'vuex';
 import { computed, ref } from 'vue';
 import { dispatchEventClick } from '../../../../../utils/common'
+import { useRoute } from 'vue-router';
 
 const store = useStore();
 const filter_id = ref('');
 const s = ref('');
-const videos = computed(() => store.state.video.videos);
+const collections = computed(() => store.state.collection.collections);
+const route = useRoute();
 
 /**
- * Filters videos based on the provided filter ID and search term.
+ * Filters collections based on the provided filter ID and search term.
  *
  * @param {string} filterId - The ID of the filter to apply.
  * @return {Promise<void>} - A promise that resolves when the filtering is complete.
  */
-const filterVideos = async (filterId) => {
+const fetchCollections = async (filterId) => {
     filter_id.value = filterId;
-    await store.dispatch('video/filterVideos', { filter_id: filterId, s: s.value });
+    await store.dispatch('collection/fetchCollections', { id: route.params.id, filter_id: filterId, s: s.value });
     dispatchEventClick();
 }
 
 /**
- * Clears the filter by setting the filter ID to an empty string and dispatches the 'video/filterVideos' action with the updated filter ID and search term.
+ * Clears the filter by setting the filter ID to an empty string and dispatches the 'video/filtercollections' action with the updated filter ID and search term.
  *
  * @return {Promise<void>} A promise that resolves when the filter is cleared.
  */
 const clearFilter = async () => {
     filter_id.value = '';
-    await store.dispatch('video/filterVideos', { filter_id, s: s.value });
+    await store.dispatch('collection/fetchCollections', { id: route.params.id, filter_id, s: s.value });
 }
 </script>
