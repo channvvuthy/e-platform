@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5 w-full overflow-y-scroll" :style="{ height: `${windowHeight - 63}px` }">
+    <div class="p-5 w-full overflow-y-scroll" :style="{ height: `${windowHeight - 63}px` }" @scroll="handleScroll">
         <Search />
         <div v-if="loading">
             <div>
@@ -10,7 +10,7 @@
         </div>
         <div v-else class="mt-5">
             <VideoCollection />
-            <VideoCouse/>
+            <VideoCouse />
         </div>
     </div>
 </template>
@@ -24,9 +24,36 @@ import VideoCouse from "./course/VideoCourse.vue"
 
 const store = useStore();
 const loading = computed(() => store.state.video.loading);
+const filters = computed(() => store.state.video.filters);
+const p = ref(1);
+const isNoMoreData = ref(false);
+
+/**
+ * Handles the scroll event and fetches more videos when reaching the bottom.
+ *
+ * @param {Event} event - The scroll event object.
+ * @return {Promise<void>} A promise that resolves when the videos are fetched.
+ */
+const handleScroll = async (event) => {
+    const isBottom = event.target.scrollTop + event.target.clientHeight >= event.target.scrollHeight;
+
+    if (isBottom) {
+        if (isNoMoreData.value)
+            return;
+
+        p.value++;
+        await store.dispatch('video/fetchVideos', { p: p.value, ...filters.value })
+            .then((data) => {
+                if (!data.length) {
+                    isNoMoreData.value = true;
+                }
+            });
+    }
+}
+
 
 onMounted(async () => {
-   await store.dispatch('video/fetchVideos');
+    await store.dispatch('video/fetchVideos');
 });
 
 const windowHeight = ref(window.innerHeight);

@@ -34,6 +34,10 @@ export default {
 
         setFilter(state, value) {
             state.filters = value;
+        },
+
+        addVideos(state, values) {
+            state.videos.list.push(...values);
         }
     },
     actions: {
@@ -48,7 +52,13 @@ export default {
             commit('setLoading', true);
             try {
                 const { data } = await ajax.get(videoPath, props);
-                commit('setVideos', data);
+
+                if (props.p && props.p > 1) {
+                    commit('addVideos', data.list);
+                } else {
+                    commit('setVideos', data);
+                }
+
                 return data;
             } finally {
                 commit('setLoading', false);
@@ -63,7 +73,7 @@ export default {
          * @return {void}
          */
         filterVideos({ commit }, props = {}) {
-            commit('setFilter', true);
+            commit('setFilter', props);
             this.dispatch('video/fetchVideos', props, { root: true });
         }
     },
