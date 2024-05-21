@@ -70,9 +70,9 @@ div#profile {
 .block{
     z-index: 100 !important;
 }
-/* div#webpack-dev-server-client-overlay-div {
+div#webpack-dev-server-client-overlay-div {
     display: none;
 }
 iframe#webpack-dev-server-client-overlay {
     display: none;
-} */
+}
