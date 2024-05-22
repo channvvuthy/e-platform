@@ -10,3 +10,4 @@ export const getNotificationPath = 'notification';
 export const readNotificationPath = 'notification/read';
 export const videoPath = 'video';
 export const videoPackagePath = 'video/package';
+export const videoDetailPath = 'video/detail';

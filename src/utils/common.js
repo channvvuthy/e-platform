@@ -109,3 +109,11 @@ export const dispatchEventClick = () => {
     });
     document.body.dispatchEvent(event);
 }
+
+export const formatToK = (num) => {
+    if (num >= 1000) {
+        const formattedNumber = (num / 1000).toFixed(1);
+        return formattedNumber.replace(/\.0$/, '') + 'k';
+    }
+    return num.toString();
+}

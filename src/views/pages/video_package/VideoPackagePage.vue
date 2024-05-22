@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5 w-full overflow-y-scroll" :style="{ height: `${windowHeight - 63}px` }">
+    <div class="p-5 w-full overflow-y-scroll pb-8" :style="{ height: `${windowHeight - 63}px` }">
         <Search />
         <div v-if="loading">
             <div>

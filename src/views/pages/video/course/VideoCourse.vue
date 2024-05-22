@@ -4,8 +4,8 @@
         <div class="grid grid-cols-3 gap-8 mt-5 px-2">
             <div v-for="(video, index) in videos.list" :key="index">
                 <div class="box-shadow rounded-2xl pb-5">
-                    <div class="h-40 w-full bg-center bg-cover rounded-t-lg relative"
-                        :style="{ backgroundImage: `url(${video.thumbnail})` }">
+                    <div class="h-40 w-full bg-center bg-cover rounded-t-lg relative cursor-pointer"
+                        :style="{ backgroundImage: `url(${video.thumbnail})` }" @click="toDetail(video)">
                         <!-- Default profile -->
                         <div class="bg-white shadow h-16 w-16 rounded absolute left-5 -bottom-5 bg-center bg-cover z-10"
                             :style="{ backgroundImage: `url(${Logo})` }">
@@ -42,8 +42,21 @@ import { useStore } from 'vuex';
 import Logo from '../../../../assets/images/logo.png';
 import VideoFeature from './partials/VideoFeature.vue'
 import { truncateString } from '../../../../utils/common';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const store = useStore();
 
 const videos = computed(() => store.state.video.videos);
+
+/**
+ * Navigates to the video detail page with the provided detail ID and empty package ID.
+ *
+ * @param {Object} detail - The detail object containing the detail ID.
+ * @return {void} This function does not return anything.
+ */
+const toDetail = (detail) => {
+    router.push({ name: 'video-detail', params: { id: detail._id, package_id: null } })
+}
 </script>

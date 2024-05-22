@@ -8,6 +8,7 @@ import user from './user';
 import notification from './notification';
 import video from './video';
 import collection from './collection';
+import videoDetail from './video_detail';
 
 
 export default createStore({
@@ -20,6 +21,7 @@ export default createStore({
     user,
     notification,
     video,
-    collection
+    collection,
+    videoDetail
   }
 })
