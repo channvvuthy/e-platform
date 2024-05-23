@@ -10,6 +10,7 @@ import VideoPage from "../views/pages/video/VideoPage";
 import LibraryPage from '../views/pages/library/LibraryPage.vue';
 import VideoPackagePage from '../views/pages/video_package/VideoPackagePage.vue';
 import VideoDetailPage from '../views/pages/video_detail/VideoDetailPage.vue';
+import VideoPlayListPage from '../views/pages/video_playlist/VideoPlaylistPage.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomePage, meta: { requiresAuth: true } },
@@ -21,6 +22,7 @@ const routes = [
   { path: '/video', name: 'video', component: VideoPage },
   { path: '/video/package/:id', name: 'video-package', component: VideoPackagePage },
   { path: '/video/detail/:id/:package_id?', name: 'video-detail', component: VideoDetailPage },
+  { path: '/video/playlist/:courseId', name: 'video-playlist', component: VideoPlayListPage },
   { path: '/library', name: 'library', component: LibraryPage },
   { path: '/forget-password', name: 'forget-password', component: ForgetPasswordPage },
   { path: '/change-password', name: 'change-password', component: ChangePasswordPage },

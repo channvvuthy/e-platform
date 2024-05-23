@@ -110,10 +110,26 @@ export const dispatchEventClick = () => {
     document.body.dispatchEvent(event);
 }
 
+/**
+ * Format number to k ex: 2.2k
+ *
+ * @param {*} num
+ * @returns {*}
+ */
 export const formatToK = (num) => {
     if (num >= 1000) {
         const formattedNumber = (num / 1000).toFixed(1);
         return formattedNumber.replace(/\.0$/, '') + 'k';
     }
     return num.toString();
+}
+
+/**
+ * Get last index of array
+ *
+ * @param {*} arr
+ * @returns {number}
+ */
+export const getLastIndex = (arr) => {
+    return arr.length > 0 ? arr.length - 1 : -1;
 }
